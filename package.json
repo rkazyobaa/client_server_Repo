@@ -1,0 +1,17 @@
+{
+    "name": "socket-encryption",
+    "version": "1.0.0",
+    "description": "encryption application",
+    "dependencies": {
+      "-": "0.0.1",
+      "express": "^4.17.1",
+      "io": "^0.1.10",
+      "node-rsa": "^0.4.2",
+      "save": "^2.4.0",
+      "socket.io": "^1.7.4"
+    },
+    "scripts": {
+      "generate": "node init",
+      "start": "node index.js"
+    }
+  }

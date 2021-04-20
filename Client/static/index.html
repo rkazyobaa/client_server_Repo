@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+    <title>Encryption/decryption RSA AES</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+<body>
+<div class="container">
+    <div class="text-container">
+        <h2>Server public key</h2>
+
+        <!--Put server public key here-->
+        <textarea id="server_public">
+                            -----BEGIN PUBLIC KEY-----
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxw+Mk5/gs1xtTk+LF/9+
+            EiOBD29AAzH5NqIagoEmb+A2gWNNWeLlN49NVcJrWJZIaEqyMKdq6MOaj3SiRDgc
+            Lm6hNNnisjp5pzASJ75yDK7sb/48n6NTsAB9aAh68Pf9JTMdDGHRNAhfc3jJoC6C
+            9zfqt1Ujuv7f87cdr0gc8j6ksixmhgLdR+w4uSf0l9oxx/2MnGcP34t5eb0tXKd0
+            +pk4pp5mSOIrpj455QxtYvBis1+rxIR6Ux3LqWVV9kjcwdU1/RhFkPRVqZlvOEq7
+            SVCMyfO6cBhIPdZQ3++7u9FZCs7GWCQG/iIv8ln2lc04IR4eqn5O/jRe2QV3w8sz
+            RwIDAQAB
+                            -----END PUBLIC KEY-----
+        </textarea>
+    </div>
+
+    <div class="text-container">
+        <h2>Client public key</h2>
+
+        <!--Put client public key here-->
+        <textarea id="client_public">
+                            -----BEGIN PUBLIC KEY-----
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoamuXxHw4QtA7MH1LfdC
+            3+hmaxq4s+3TbdIR+ZIGA/r8hgEPK2k2KrQMCbn2Q2ANRmcL2gXhsZIDPR3mYakR
+            KyxVWCUbYzFAhOyvYwcPyMMC7GfdELdlBQpUyidSMaed5GuYXS3lwX2dmMpsUNR8
+            8HC/NMlZTv/oZVT/p5iCXZu6dq4nc05EindVnnF7o/xvsTCNdW6Beqhmy1N2J0p+
+            CRTB7ARPOFgo7PNcrZpDtotsibbCNSEXklpFZIg/rTPXc+ud2vTZ1rdSt28q4T/X
+            wKZ6AHZJ/ZxH1Ig7422u/51R3mI9mM5lHqXnixQBmahHrLWJ10HPu55Il9jPViu7
+            8QIDAQAB
+                            -----END PUBLIC KEY-----
+        </textarea>
+    </div>
+
+    <div  class="text-container">
+        <h2>Client private key</h2>
+
+        <!--Put client private key here-->
+        <textarea id="client_private">
+                            -----BEGIN PRIVATE KEY-----
+            MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQChqa5fEfDhC0Ds
+            wfUt90Lf6GZrGriz7dNt0hH5kgYD+vyGAQ8raTYqtAwJufZDYA1GZwvaBeGxkgM9
+            HeZhqRErLFVYJRtjMUCE7K9jBw/IwwLsZ90Qt2UFClTKJ1Ixp53ka5hdLeXBfZ2Y
+            ymxQ1HzwcL80yVlO/+hlVP+nmIJdm7p2ridzTkSKd1WecXuj/G+xMI11boF6qGbL
+            U3YnSn4JFMHsBE84WCjs81ytmkO2i2yJtsI1IReSWkVkiD+tM9dz653a9NnWt1K3
+            byrhP9fApnoAdkn9nEfUiDvjba7/nVHeYj2YzmUepeeLFAGZqEestYnXQc+7nkiX
+            2M9WK7vxAgMBAAECggEAC11BO7+oHjnLS5lq4dtS4SiWIotTVpquVTcCOngQYjE/
+            lS/34AZaX3AetIRVEnFrHXra822cav4nqiEy88SNx2orabHaFgP9VBrLTXvOmT9U
+            Mkgu2yD5Qfxy728KMSFmUQtbP5mdYBezf20jZh851TEnz88jrxEARjdObXqkF25h
+            GaMN7eujZ6Zlcq7PdlaaOylYos71WzlJJcBU06vE8RGNS/ngFE7cO5hCGtWAAh8W
+            CKWxnHqxwX6z3Foc5JtfZokeMSzeoDdxgk0vV7MV54Z7MwlAdWAMvdt58QuSeN3t
+            s2uQEok9tDQBsjZxruHB4nGg7q9DFBE6NjFgvTXFjQKBgQDu26KELmV1cIIlOOCS
+            WSQSWTk0hwIbHr+0L+mh8d8n6YBdCUUNHrkAEG3B/B3HI1DUuDCQC7yxiSsZ1cao
+            vii9G/CwAgQ2LI/dur3mBxZAihGnfnV9BgvzcomXkfDPMdUl+CEZi8qtpbGaPRc1
+            xt5ONKqNXS+mPTh41GtRU3JmiwKBgQCtQ8u0G4kafZn/RURUwHpseJud05tYZsO5
+            ftM1ZXO/p7+a+q/rIGeBohfRwXTFgDgx7BnE5/jct8CSIeaVgSvjK42IFjpHB1ZQ
+            06UekpFNRjrfpgqbz3imvTl/yApgTq0wjDhjq5ZKbJQs87zmMyyet0AWhUjoy3P3
+            P6TlnI/y8wKBgGB0fydDmSMYoOWpFz7iEmf6cdhdYKNVAnMgGgeUpdn3OCfZ03Gd
+            43U8LSZ1ygydnUmZa7rvkm5bBvWy1ztTNx5Oxx48YjkCO8J9Y6wdVoYPe1uY/JbV
+            N0RDD38OpyD0ba+ciLlJMzp2O8cePl4wBZutNuZJKDHIbSKWHRRFT2BLAoGAdw/u
+            bC670TtcVoFXylGWDvH2JcdiqaW8e7x+EORNXPc+AJahypYy6m7jpV0mDA3nD88p
+            ihjJ94pBx2mKVVQ1P18PW+PCWkrdcp9tiQu403weOs+T3Kv+Qb4oQ/nHv5RxCLpi
+            iYNAvJXOYPGA7kNeNxa/8HnYtzgP0WinvK0QcicCgYBsOy5Sgrxagb3kmbo6SgEz
+            1oMIzSnSSknJ84Lc5YwQiG8OgL0qnNBMJqP1qlfj0SoiskUz6rwNAw1o0ijJvJag
+            xDW2pIlm5RwbKCCAHhXs0QbpQn3006qLFi1/kyAE55D4e+8x5k/0ZQN9W37hBkZA
+            7D97V+WbqB7gUPBW6/DGTg==
+                            -----END PRIVATE KEY-----
+        </textarea>
+    </div>
+    <div style="clear: both"></div>
+</div>
+
+<div class="log-container">
+    <h1>Log container</h1>
+    <div id="log" style="padding-top: 20px"></div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/encoding.js"></script>
+<script src="/js/encoding-indexes.js"></script>
+<script src="/js/converter-wrapper.js"></script>
+<script src="/js/rsa-wrapper.js"></script>
+<script src="/js/aes-wrapper.js"></script>
+
+<script>
+
+    var socket = io();
+    var aesKey;
+
+    // Test accepting and sending dummy message encrypted with RSA
+    socket.on('rsa server encrypted message', function (msg) {
+
+        // Test accepting dummy RSA message from server
+        addLog('RSA server encrypted dummy message', msg);
+
+        // Decrypting server message using wrapper
+        rsaWrapper.privateDecrypt(document.getElementById('client_private').value, msg).then(function (decrypted) {
+            addLog('RSA server decrypted message', decrypted);
+        });
+
+        // Test send to server dummy RSA message
+        rsaWrapper.publicEncrypt(document.getElementById('server_public').value, 'Hello from client with RSA').then(function (encrypted) {
+            addLog('RSA encrypted base64 message from client', encrypted);
+            // emit encryption client message to server
+            socket.emit('rsa client encrypted message', encrypted);
+        });
+    });
+
+    // Test accepting RSA encrypted AES key and sending AES encrypted message to server
+    socket.on('send key from server to client', function (data) {
+        addLog('Accepting RSA encrypted AES key', data);
+        // Decrypting RSA encrypted AES key message
+        rsaWrapper.privateDecrypt(document.getElementById('client_private').value, data).then(function (key) {
+            addLog('Decrypted AES key from server in base64 format', key);
+            aesKey = key;
+
+            // encrypting test AES message from client to server
+            aesWrapper.encryptMessage(key, 'Hello from client with AES').then(function (encrypted) {
+                addLog('Encrypted AES message from client to server in base64 format', encrypted);
+                //sending encrypting AES message
+                socket.emit('aes client encrypted message', encrypted);
+            })
+        });
+    });
+
+    // Test decrypting AES message from server
+    socket.on('aes server encrypted message', function (msg) {
+        addLog('Encrypted AES message from server', msg);
+        // Decrypting AES message from server
+        aesWrapper.decryptMessage(aesKey, msg).then(function (dec) {
+            addLog('Decrypted AES message from server', dec);
+        });
+    });
+
+    function addLog(title, content) {
+        var iDiv = document.createElement('div');
+        var h = document.createElement('h2');
+        h.append(title);
+        iDiv.appendChild(h);
+        var p = document.createElement('p');
+        p.append(content);
+        iDiv.appendChild(p);
+        document.getElementById('log').appendChild(iDiv);
+        document.getElementById('log').appendChild(document.createElement('hr'));
+    }
+</script>
+</body>
+</html>
